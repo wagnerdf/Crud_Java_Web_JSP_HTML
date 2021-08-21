@@ -24,6 +24,23 @@ public class UsuarioDAO {
 		return con;
 	}
 	
+	
+	public static int deletarUsuario(Usuario u) {
+		int status = 0;
+		
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = (PreparedStatement) con.prepareStatement("DELETE FROM usuario WHERE id=?");
+			ps.setInt(1, u.getId());
+			status = ps.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;
+	}
+	
+	
 	public static int salvarUsuario(Usuario u) {
 		int status = 0;
 		
