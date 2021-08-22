@@ -9,11 +9,25 @@
 	
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
-
-	
 	<h1>Listagem de Usuários</h1>
 	
-	<% List<Usuario> list = UsuarioDAO.getAllUsuarios();
+	<% 
+	
+	String pageid = request.getParameter("page");
+	if(pageid == null){
+		pageid = "1";
+	}
+	int id = Integer.parseInt(pageid);
+	int total = 5;
+	
+	if(id==1){}
+	else{
+		id = id -1;
+		id = id * total + 1;
+	}
+	
+	//List<Usuario> list = UsuarioDAO.getAllUsuarios();
+	List<Usuario> list = UsuarioDAO.getRecords(id, total);
 	request.setAttribute("list", list);
 	%>  
 	
@@ -43,6 +57,11 @@
 		</tr>
 		</c:forEach>	
 	</table>
+	<br>
+	<a href="viewusuarios.jsp?page=1">1</a>
+	<a href="viewusuarios.jsp?page=2">2</a>
+	<a href="viewusuarios.jsp?page=3">3</a>
+	
 	<br>
 	<a href="addusuarioform.jsp">Adicionar novo Usuário</a>
 </body>

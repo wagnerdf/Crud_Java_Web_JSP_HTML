@@ -141,6 +141,51 @@ public class UsuarioDAO {
 		return list;
 	}
 	
-	
+	public static List<Usuario> getRecords(int start, int total){
+		List<Usuario> list = new ArrayList<Usuario>();
+		
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario LIMIT "+(start)+","+total);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setPassword(rs.getString("password"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setSexo(rs.getString("sexo"));
+				usuario.setPais(rs.getString("pais"));
+				list.add(usuario);
+			}
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		 
+		return list;
+		
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
