@@ -2,7 +2,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Visualização de usuários</title>
+<title>Visualização de Usuários</title>
+
+<script type="text/javascript">
+
+	function confirmaExclusao(id){
+		var resposta = confirm("Deseja remover esse registro? "+id);
+		
+		if(resposta == true){
+			location.href = "deleteusuario.jsp?id="+id;
+		}
+	}
+
+</script>
+
 </head>
 <body>
 	<%@ page import="com.crudjspjava.dao.UsuarioDAO, com.crudjspjava.bean.*, java.util.*"%>
@@ -52,7 +65,7 @@
 			<td>${usuario.getSexo()}</td>
 			<td>${usuario.getPais()}</td>
 			<td><a href="editform.jsp?id=${usuario.getId()}">Editar</a></td>
-			<td><a href="deleteusuario.jsp?id=${usuario.getId()}">Excluir</a></td>
+			<td><a href="javascript:func(${usuario.getId()})" onclick="confirmaExclusao(${usuario.getId()})">Excluir</a></td>
 			
 		</tr>
 		</c:forEach>	
@@ -64,5 +77,7 @@
 	
 	<br>
 	<a href="addusuarioform.jsp">Adicionar novo Usuário</a>
+		
+	
 </body>
 </html>

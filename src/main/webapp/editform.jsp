@@ -5,6 +5,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Edição do Usuário</title>
+
+<script type="text/javascript">
+
+	function confirmaEdicao(){
+       	var resposta = confirm("Deseja remover esse registro?");
+		if(resposta == false){
+			return false;
+			location.href = "viewusuarios.jsp";
+		}else{
+			return true;
+		}
+		
+	}
+
+</script>
+
 </head>
 <body>
 
@@ -37,8 +53,8 @@
 			</tr>
 			<tr>
 				<td>Sexo: </td>
-				<td><input type="radio" name="sexo" value="masculino"/>Masculino
-				<td><input type="radio" name="sexo" value="feminino"/>Feminino
+				<td><input type="radio" name="sexo" value="Masculino"/>Masculino
+				<td><input type="radio" name="sexo" value="Feminino"/>Feminino
 				</td>
 			</tr>
 			<tr>
@@ -54,10 +70,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Editar Usuário"></input></td>
+				<td colspan="2"><input type="submit" value="Editar Usuário" onclick="return confirmaEdicao();"></input></td>
 			</tr>
-			
-			
+							
 		</table>
 		
 	</form>
